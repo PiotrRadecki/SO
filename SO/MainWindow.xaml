@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-        Background = "mapa_v7.png"
+        Title="MainWindow" Height="800" Width="1000">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/mapa_v7.png"/>
+        </Grid.Background>
 
+        
+        
+        
     </Grid>
 </Window>
