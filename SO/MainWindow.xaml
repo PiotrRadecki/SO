@@ -15,14 +15,14 @@
         <Canvas Width="1200">
             
             <Path x:Name ="Road1" VerticalAlignment="Top" 
-          Data="m 10,286 h 800 c 130,10  190, 200 -105, 180 h -450 c -160,10 -200,250 -35,290 H 1200  "
+          Data="m 10,286 h 810 c 120,10  160, 220 -95, 190 h -450 c -190,30 -200,235 -15,285 H 1200  "
           Stroke="Black" StrokeThickness="2"
-          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1169" />
+          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1200" />
 
             <Path x:Name ="Road2" VerticalAlignment="Top" 
-          Data="m 1150,700 h -900 c -260,-230 280,-190  420, -180 h 170 c 200,-20 210, -310 -80,-290 h -760"
+          Data="m 1200,700 h -950 c -250,-250 300,-180  400, -180 h 170 c 220,-30 220, -310 -90,-285 h -760"
           Stroke="Black" StrokeThickness="2"
-          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1169" />
+          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1200" />
 
             <Path x:Name="Rails" Stroke="Red"
                   Data="M 55,900 L 55,0"/>
