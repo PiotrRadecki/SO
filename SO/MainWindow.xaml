@@ -5,14 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="MainWindow" Height="900" Width="1200">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="img/mapa_v7.png"/>
         </Grid.Background>
 
-        
-        
-        
+        <Canvas Width="1200">
+            
+            <Path x:Name ="Road1" VerticalAlignment="Top" 
+          Data="m 10,286 h 800 c 130,10  190, 200 -105, 180 h -450 c -160,10 -200,250 -35,290 H 1200  "
+          Stroke="Black" StrokeThickness="2"
+          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1169" />
+
+            <Path x:Name ="Road2" VerticalAlignment="Top" 
+          Data="m 1150,700 h -900 c -260,-230 280,-190  420, -180 h 170 c 200,-20 210, -310 -80,-290 h -760"
+          Stroke="Black" StrokeThickness="2"
+          Stretch="None" Canvas.Top="10" HorizontalAlignment="Center" Height="880" Width="1169" />
+
+            <Path x:Name="Rails" Stroke="Red"
+                  Data="M 55,900 L 55,0"/>
+
+            <Path Margin="0,0,15,15">
+                <Path.Fill>
+                    <ImageBrush ImageSource="/img/car.png"/>
+                </Path.Fill>
+                <Path.Data>
+                    <RectangleGeometry  x:Name="MyAnimatedRectGeometry" Rect="0,0 60, 30">
+                    </RectangleGeometry>
+                </Path.Data>
+                <Path.LayoutTransform>
+                    <RotateTransform Angle="0"/>
+                </Path.LayoutTransform>
+                <Path.RenderTransform>
+                    <MatrixTransform x:Name="myMatrixTransform">
+                        <MatrixTransform.Matrix >
+                            <Matrix OffsetX="0" OffsetY="210"/>
+                        </MatrixTransform.Matrix>
+                    </MatrixTransform>
+                </Path.RenderTransform>
+            </Path>
+
+            <Path Margin="0,0,15,15">
+                <Path.Fill>
+                    <ImageBrush ImageSource="/img/train.png"/>
+                </Path.Fill>
+                <Path.Data>
+                    <RectangleGeometry  x:Name="TrainAnimatedRectGeometry" Rect="0,0 250, 70">
+                    </RectangleGeometry>
+                </Path.Data>
+                <Path.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Path.LayoutTransform>
+                <Path.RenderTransform>
+                    <MatrixTransform x:Name="TrainMatrixTransform">
+                        <MatrixTransform.Matrix >
+                            <Matrix OffsetX="20" OffsetY="630"/>
+                        </MatrixTransform.Matrix>
+                    </MatrixTransform>
+                </Path.RenderTransform>
+            </Path>
+
+        </Canvas>
+
+        <StackPanel>
+            <Button Content="Car" Width="100" HorizontalAlignment="Left" >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+
+                                <MatrixAnimationUsingPath
+                Storyboard.TargetName="myMatrixTransform"
+                Storyboard.TargetProperty="Matrix"
+                DoesRotateWithTangent="True" 
+                Duration="0:0:20" 
+                RepeatBehavior="Forever" AutoReverse="False" >
+                                    <MatrixAnimationUsingPath.PathGeometry>
+                                        <PathGeometry Figures="m 10,286 h 800 c 130,10  190, 200 -105, 180 h -450 c -160,10 -200,250 -35,290 H 1200" />
+                                    </MatrixAnimationUsingPath.PathGeometry>
+                                </MatrixAnimationUsingPath>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Content="Train" Width="100" HorizontalAlignment="Left">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+
+                                <MatrixAnimationUsingPath
+                Storyboard.TargetName="TrainMatrixTransform"
+                Storyboard.TargetProperty="Matrix"
+                DoesRotateWithTangent="True" 
+                Duration="0:0:10" 
+                RepeatBehavior="Forever" AutoReverse="False" >
+                                    <MatrixAnimationUsingPath.PathGeometry>
+                                        <PathGeometry Figures="M 741,900 L 741,0" />
+                                    </MatrixAnimationUsingPath.PathGeometry>
+                                </MatrixAnimationUsingPath>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>
