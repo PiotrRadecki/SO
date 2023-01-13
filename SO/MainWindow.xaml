@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:SO"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1200">
+
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="img/mapa_v7.png"/>
+            <ImageBrush ImageSource="/assets/map.png"/>
         </Grid.Background>
 
         <Canvas Width="1200">
@@ -28,7 +29,7 @@
 
             <Path Margin="0,0,15,15">
                 <Path.Fill>
-                    <ImageBrush ImageSource="/img/car.png"/>
+                    <ImageBrush ImageSource="/assets/car.png"/>
                 </Path.Fill>
                 <Path.Data>
                     <RectangleGeometry  x:Name="MyAnimatedRectGeometry" Rect="0,0 60, 30">
@@ -40,7 +41,7 @@
                 <Path.RenderTransform>
                     <MatrixTransform x:Name="myMatrixTransform">
                         <MatrixTransform.Matrix >
-                            <Matrix OffsetX="0" OffsetY="210"/>
+                            <Matrix OffsetX="0" OffsetY="270"/>
                         </MatrixTransform.Matrix>
                     </MatrixTransform>
                 </Path.RenderTransform>
@@ -48,19 +49,19 @@
 
             <Path Margin="0,0,15,15">
                 <Path.Fill>
-                    <ImageBrush ImageSource="/img/train.png"/>
+                    <ImageBrush ImageSource="/assets/train.png"/>
                 </Path.Fill>
                 <Path.Data>
-                    <RectangleGeometry  x:Name="TrainAnimatedRectGeometry" Rect="0,0 250, 70">
+                    <RectangleGeometry  x:Name="TrainAnimatedRectGeometry" Rect="0,0 250, 370">
                     </RectangleGeometry>
                 </Path.Data>
                 <Path.LayoutTransform>
-                    <RotateTransform Angle="90"/>
+                    <RotateTransform Angle="0"/>
                 </Path.LayoutTransform>
                 <Path.RenderTransform>
                     <MatrixTransform x:Name="TrainMatrixTransform">
                         <MatrixTransform.Matrix >
-                            <Matrix OffsetX="20" OffsetY="630"/>
+                            <Matrix OffsetX="-60" OffsetY="560"/>
                         </MatrixTransform.Matrix>
                     </MatrixTransform>
                 </Path.RenderTransform>
@@ -99,11 +100,11 @@
                                 <MatrixAnimationUsingPath
                 Storyboard.TargetName="TrainMatrixTransform"
                 Storyboard.TargetProperty="Matrix"
-                DoesRotateWithTangent="True" 
+                DoesRotateWithTangent="False" 
                 Duration="0:0:10" 
                 RepeatBehavior="Forever" AutoReverse="False" >
                                     <MatrixAnimationUsingPath.PathGeometry>
-                                        <PathGeometry Figures="M 741,900 L 741,0" />
+                                        <PathGeometry Figures="M -65,900 L -65,0"/>
                                     </MatrixAnimationUsingPath.PathGeometry>
                                 </MatrixAnimationUsingPath>
                             </Storyboard>
