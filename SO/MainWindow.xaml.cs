@@ -56,11 +56,11 @@ namespace SO
             Thread droga1 = new Thread(Droga1);
             droga1.Start();
 
-            Thread auto2 = new Thread(Auto2);
-            auto2.Start();
+            //Thread auto2 = new Thread(Auto2);
+            //auto2.Start();
 
-            Thread droga2 = new Thread(Droga2);
-            droga2.Start();
+            //Thread droga2 = new Thread(Droga2);
+            //droga2.Start();
 
             Thread pociag = new Thread(Pociag);
             pociag.Start();
@@ -96,33 +96,38 @@ namespace SO
             }
         }
          public void Auto2()
-         {
-             while (true)
-             {
-                 this.Dispatcher.Invoke(() =>
-                 {
-                     Rectangle auto2 = new Rectangle();
-                     auto2.Width = 40;
-                     auto2.Height = 20;
-                     auto2.Fill = Brushes.AliceBlue;
-                     Canvas1.Children.Add(auto2);
-                     Canvas.SetTop(auto2, 145);
-                     rauto2.Add(auto2);
-                     xa2.Add(0);
-                     ya2.Add(145);
-                     kat2.Add(3.6);
-                     kat22.Add(3.6);
-                     xa22.Add(0);
-                     ya22.Add(0);
-                 });
-                 Thread.Sleep(1500);
-             }
-         }
+        {
+            while (true)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    Rectangle auto2 = new Rectangle();
+                    auto2.Width = 40;
+                    auto2.Height = 20;
+                    auto2.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/car2.png", UriKind.Relative)));
+                    Canvas1.Children.Add(auto2);
+                    Canvas.SetTop(auto2, 477);
+                    rauto1.Add(auto2);
+                    xa2.Add(800);
+                    ya2.Add(477);
+                    kat2.Add(0);
+                    kat22.Add(0);
+                    xa22.Add(0);
+                    ya22.Add(0);
+                    Random rnd2 = new Random();
+                    double pre = rnd2.NextDouble() + 1;
+                    v2.Add(pre);
+                    v22.Add(pre);
+                });
+                Thread.Sleep(1500);
+            }
+        }
 
         public void Droga1()
         {
             double r1 = 91;
             double r2 = 62;
+            int s = 490;
 
             while (true)
             {
@@ -130,7 +135,7 @@ namespace SO
                 foreach (Rectangle auto1 in rdroga1)
                 {
                     //Pierwsza prosta
-                    if (xa1[rdroga1.IndexOf(auto1)] < 490 && ya1[rdroga1.IndexOf(auto1)] == 145)
+                    if (xa1[rdroga1.IndexOf(auto1)] < s && ya1[rdroga1.IndexOf(auto1)] == 145)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
@@ -369,8 +374,8 @@ namespace SO
 
                         this.Dispatcher.Invoke(() =>
                         {
-                            Canvas.SetLeft(auto2, xa2[rauto2.IndexOf(auto2)] + 15);
-                            Canvas.SetTop(auto2, ya2[rauto2.IndexOf(auto2)] - 62);
+                            Canvas.SetLeft(auto2, xa22[rauto2.IndexOf(auto2)] + 15);
+                            Canvas.SetTop(auto2, ya22[rauto2.IndexOf(auto2)] - 62);
                         });
 
 
@@ -386,8 +391,8 @@ namespace SO
                         this.Dispatcher.Invoke(() =>
                         {
 
-                            xa22[rauto2.IndexOf(auto2)] = xa22[rauto2.IndexOf(auto2)] + 15;
-                            ya22[rauto2.IndexOf(auto2)] = ya22[rauto2.IndexOf(auto2)] - 62;
+                            xa2[rauto2.IndexOf(auto2)] = xa22[rauto2.IndexOf(auto2)] + 15;
+                            ya2[rauto2.IndexOf(auto2)] = ya22[rauto2.IndexOf(auto2)] - 62;
 
                             xa22[rauto2.IndexOf(auto2)] = 0;
                             ya22[rauto2.IndexOf(auto2)] = 0;
@@ -396,11 +401,11 @@ namespace SO
                     }
 
                     //TRZECIA PROSTA
-                    else if (xa2[rauto2.IndexOf(auto2)] < 464 + 15 && xa2[rauto2.IndexOf(auto2)] > 0 && ya2[rauto2.IndexOf(auto2)] > 237 - 62 && ya22[rauto2.IndexOf(auto2)] < 238 - 62)
+                    else if (xa2[rauto2.IndexOf(auto2)] < 464 + 15 && xa2[rauto2.IndexOf(auto2)] > 0 && ya2[rauto2.IndexOf(auto2)] > 237 - 62 && ya2[rauto2.IndexOf(auto2)] < 238 - 62)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
-                            Canvas.SetLeft(auto2, xa22[rauto2.IndexOf(auto2)]);
+                            Canvas.SetLeft(auto2, xa2[rauto2.IndexOf(auto2)]);
                             xa2[rauto2.IndexOf(auto2)] = xa2[rauto2.IndexOf(auto2)] - v2[rauto2.IndexOf(auto2)];
 
                             if (rauto2.IndexOf(auto2) != 0 && (xa2[rauto2.IndexOf(auto2)]) > (xa2[(rauto2.IndexOf(auto2)) - 1] - 80))
