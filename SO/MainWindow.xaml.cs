@@ -29,6 +29,8 @@ namespace SO
         List<double> ya1 = new List<double>();
         List<double> xa11 = new List<double>();
         List<double> ya11 = new List<double>();
+        List<double> v1 = new List<double>();
+        List<double> v11 = new List<double>();
 
         List<Rectangle> rauto2 = new List<Rectangle>();
         List<double> kat2 = new List<double>();
@@ -42,16 +44,14 @@ namespace SO
         {
             InitializeComponent();
 
-            Thread droga1 = new Thread(Droga1);
-            droga1.Start();
-
             Thread auto1 = new Thread(Auto1);
             auto1.Start();
 
+            Thread droga1 = new Thread(Droga1);
+            droga1.Start();
+
             //Thread auto2 = new Thread(Auto2);
             //auto2.Start();
-
-            
 
             //Thread droga2 = new Thread();
             // droga2.Start();
