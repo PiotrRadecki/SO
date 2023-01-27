@@ -53,14 +53,14 @@ namespace SO
             Thread auto1 = new Thread(Auto1);
             auto1.Start();
 
+            Thread auto2 = new Thread(Auto2);
+            auto2.Start();
+
             Thread droga1 = new Thread(Droga1);
             droga1.Start();
 
-            //Thread auto2 = new Thread(Auto2);
-            //auto2.Start();
-
-            //Thread droga2 = new Thread(Droga2);
-            //droga2.Start();
+            Thread droga2 = new Thread(Droga2);
+            droga2.Start();
 
             Thread pociag = new Thread(Pociag);
             pociag.Start();
@@ -92,7 +92,9 @@ namespace SO
                     v1.Add(pr);
                     v11.Add(pr);
                 });
-                Thread.Sleep(1500);
+                Random rnd2 = new Random();
+                double sr = rnd2.Next(1500,5000);
+                Thread.Sleep((int)sr);
             }
         }
          public void Auto2()
@@ -107,7 +109,7 @@ namespace SO
                     auto2.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/car2.png", UriKind.Relative)));
                     Canvas1.Children.Add(auto2);
                     Canvas.SetTop(auto2, 477);
-                    rauto1.Add(auto2);
+                    rauto2.Add(auto2);
                     xa2.Add(800);
                     ya2.Add(477);
                     kat2.Add(0);
@@ -119,7 +121,9 @@ namespace SO
                     v2.Add(pre);
                     v22.Add(pre);
                 });
-                Thread.Sleep(1500);
+                Random rnd4 = new Random();
+                double sr1 = rnd4.Next(1500, 5000);
+                Thread.Sleep((int)sr1);
             }
         }
 
@@ -146,18 +150,6 @@ namespace SO
                             {
                                 v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
                             }
-
-                            /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] == 145)
-                             {
-                                 if (stop == true)
-                                 {
-                                     v1[rdroga1.IndexOf(auto1)] = 0;
-                                 }
-                                 else
-                                 {
-                                     v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
-                                 }
-                             }*/
                         });
                     }
                     //Pierwszy zakręt
@@ -166,7 +158,6 @@ namespace SO
                         kat1[rdroga1.IndexOf(auto1)] = kat1[rdroga1.IndexOf(auto1)] - 0.1;
                         xa11[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + r1 * Math.Sin(kat1[rdroga1.IndexOf(auto1)]);
                         ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r1 * Math.Cos(kat1[rdroga1.IndexOf(auto1)]);
-
                         this.Dispatcher.Invoke(() =>
                         {
                             Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 30);
@@ -245,18 +236,6 @@ namespace SO
                             {
                                 v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
                             }
-
-                            /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] > 383 + 62 && ya1[rdroga1.IndexOf(auto1)] < 384 + 62)
-                             {
-                                 if (stop == true)
-                                 {
-                                     v1[rdroga1.IndexOf(auto1)] = 0;
-                                 }
-                                 else
-                                 {
-                                     v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
-                                 }
-                             }*/
                         });
                     }
                 }
@@ -285,18 +264,6 @@ namespace SO
                             if (rdroga2.IndexOf(auto2) != 0 && (xa2[rdroga2.IndexOf(auto2)] - 80) < (xa2[(rdroga2.IndexOf(auto2)) - 1]))
                             {
                                 v2[rdroga2.IndexOf(auto2)] = v2[(rdroga2.IndexOf(auto2) - 1)];
-                            }
-
-                            if (xa2[rdroga2.IndexOf(auto2)] == 540 && ya2[rdroga2.IndexOf(auto2)] == 477)
-                            {
-                                if (stop == true)
-                                {
-                                    v2[rdroga2.IndexOf(auto2)] = 0;
-                                }
-                                else
-                                {
-                                    v2[rdroga2.IndexOf(auto2)] = v22[rdroga2.IndexOf(auto2)];
-                                }
                             }
                         });
                     }
@@ -347,18 +314,6 @@ namespace SO
                             if (rauto2.IndexOf(auto2) != 0 && (xa2[rauto2.IndexOf(auto2)]) > (xa2[(rauto2.IndexOf(auto2)) - 1] - 80))
                             {
                                 v2[rauto2.IndexOf(auto2)] = v2[(rauto2.IndexOf(auto2) - 1)];
-                            }
-
-                            if (xa2[rauto2.IndexOf(auto2)] == 440 && ya2[rauto2.IndexOf(auto2)] > 237 - 62 && ya2[rauto2.IndexOf(auto2)] < 238 - 62)
-                            {
-                                if (stop == true)
-                                {
-                                    v2[rauto2.IndexOf(auto2)] = 0;
-                                }
-                                else
-                                {
-                                    v2[rauto2.IndexOf(auto2)] = v22[rauto2.IndexOf(auto2)];
-                                }
                             }
                         });
 
@@ -434,7 +389,9 @@ namespace SO
                     trains.Add(train);
                     yac.Add(0);
                 });
-                Thread.Sleep(25000);
+                Random rnd3 = new Random();
+                double sr1 = rnd3.Next(25000, 35000);
+                Thread.Sleep((int)sr1);
             }
         }
         public void Train()
