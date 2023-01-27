@@ -42,14 +42,16 @@ namespace SO
         {
             InitializeComponent();
 
+            Thread droga1 = new Thread(Droga1);
+            droga1.Start();
+
             Thread auto1 = new Thread(Auto1);
             auto1.Start();
 
             //Thread auto2 = new Thread(Auto2);
             //auto2.Start();
 
-            Thread droga1 = new Thread(Droga1);
-            droga1.Start();
+            
 
             //Thread droga2 = new Thread();
             // droga2.Start();
