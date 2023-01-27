@@ -40,7 +40,8 @@ namespace SO
         List<double> xa22 = new List<double>();
         List<double> ya22 = new List<double>();
 
-
+        List<Rectangle> train = new List<Rectangle>();
+        List<double> yac = new List<double>();
         bool stop;
 
         public MainWindow()
@@ -59,143 +60,150 @@ namespace SO
             //Thread droga2 = new Thread();
             // droga2.Start();
 
-            //Thread pociag = new Thread();
-            //pociag.Start();
+            Thread pociag = new Thread(Pociag);
+            pociag.Start();
+
+            Thread train = new Thread(Train);
+            train.Start();
         }
         public void Auto1()
-        {
-           while(true)
-           {
-              this.Dispatcher.Invoke(() =>
-              {
-                 Rectangle auto1 = new Rectangle();
-                 auto1.Width = 40;
-                 auto1.Height = 20;
-                 auto1.Fill = Brushes.AliceBlue;
-                 Canvas1.Children.Add(auto1);
-                 Canvas.SetTop(auto1, 145);
-                 rauto1.Add(auto1);
-                 xa1.Add(0);
-                 ya1.Add(145);
-                 kat1.Add(3.6);
-                 kat11.Add(3.6);
-                 xa11.Add(0);
-                 ya11.Add(0);
-              });
-                 Thread.Sleep(1500);
-           }
-        }
-       /* public void Auto2()
         {
             while (true)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Rectangle auto2 = new Rectangle();
-                    auto2.Width = 40;
-                    auto2.Height = 20;
-                    auto2.Fill = Brushes.AliceBlue;
-                    Canvas1.Children.Add(auto2);
-                    Canvas.SetTop(auto2, 145);
-                    rauto2.Add(auto2);
-                    xa2.Add(0);
-                    ya2.Add(145);
-                    kat2.Add(3.6);
-                    kat22.Add(3.6);
-                    xa22.Add(0);
-                    ya22.Add(0);
+                    Rectangle auto1 = new Rectangle();
+                    auto1.Width = 40;
+                    auto1.Height = 20;
+                    auto1.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/car.png", UriKind.Relative)));
+                    Canvas1.Children.Add(auto1);
+                    Canvas.SetTop(auto1, 145);
+                    rauto1.Add(auto1);
+                    xa1.Add(0);
+                    ya1.Add(145);
+                    kat1.Add(3.6);
+                    kat11.Add(3.6);
+                    xa11.Add(0);
+                    ya11.Add(0);
+                    Random rnd = new Random();
+                    double pr = rnd.NextDouble() + 1;
+                    v1.Add(pr);
+                    v11.Add(pr);
                 });
                 Thread.Sleep(1500);
             }
-        }*/
-       
+        }
+        /* public void Auto2()
+         {
+             while (true)
+             {
+                 this.Dispatcher.Invoke(() =>
+                 {
+                     Rectangle auto2 = new Rectangle();
+                     auto2.Width = 40;
+                     auto2.Height = 20;
+                     auto2.Fill = Brushes.AliceBlue;
+                     Canvas1.Children.Add(auto2);
+                     Canvas.SetTop(auto2, 145);
+                     rauto2.Add(auto2);
+                     xa2.Add(0);
+                     ya2.Add(145);
+                     kat2.Add(3.6);
+                     kat22.Add(3.6);
+                     xa22.Add(0);
+                     ya22.Add(0);
+                 });
+                 Thread.Sleep(1500);
+             }
+         }*/
+
         public void Droga1()
         {
             double r1 = 91;
             double r2 = 62;
-       
-            while(true)
+
+            while (true)
             {
                 List<Rectangle> rdroga1 = new List<Rectangle>(rauto1);
-                foreach(Rectangle auto1 in rdroga1)
+                foreach (Rectangle auto1 in rdroga1)
                 {
-                //Pierwsza prosta
-                if (xa1[rdroga1.IndexOf(auto1)] < 490 && ya1[rdroga1.IndexOf(auto1)] == 145)
-                {
-                    this.Dispatcher.Invoke(() =>
+                    //Pierwsza prosta
+                    if (xa1[rdroga1.IndexOf(auto1)] < 490 && ya1[rdroga1.IndexOf(auto1)] == 145)
                     {
-                        Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
-                        xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + v1[rdroga1.IndexOf(auto1)];
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
+                            xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + v1[rdroga1.IndexOf(auto1)];
 
-                        if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
-                        {
-                            v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
-                        }
+                            if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                            {
+                                v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
+                            }
 
-                       /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] == 145)
+                            /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] == 145)
+                             {
+                                 if (stop == true)
+                                 {
+                                     v1[rdroga1.IndexOf(auto1)] = 0;
+                                 }
+                                 else
+                                 {
+                                     v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
+                                 }
+                             }*/
+                        });
+                    }
+                    //Pierwszy zakręt
+                    else if (kat1[rdroga1.IndexOf(auto1)] > -0.3)
+                    {
+                        kat1[rdroga1.IndexOf(auto1)] = kat1[rdroga1.IndexOf(auto1)] - 0.1;
+                        xa11[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + r1 * Math.Sin(kat1[rdroga1.IndexOf(auto1)]);
+                        ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r1 * Math.Cos(kat1[rdroga1.IndexOf(auto1)]);
+
+                        this.Dispatcher.Invoke(() =>
                         {
-                            if (stop == true)
-                            {
-                                v1[rdroga1.IndexOf(auto1)] = 0;
-                            }
-                            else
-                            {
-                                v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
-                            }
-                        }*/
-                    });
-                }
-                //Pierwszy zakręt
-                else if (kat1[rdroga1.IndexOf(auto1)] > -0.3)
-                {
-                    kat1[rdroga1.IndexOf(auto1)] = kat1[rdroga1.IndexOf(auto1)] - 0.1;
-                    xa11[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + r1 * Math.Sin(kat1[rdroga1.IndexOf(auto1)]);
-                    ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r1 * Math.Cos(kat1[rdroga1.IndexOf(auto1)]);
-       
-                    this.Dispatcher.Invoke(() =>
+                            Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 30);
+                            Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 91);
+                        });
+                    }
+                    //Druga prosta
+                    else if (xa11[rdroga1.IndexOf(auto1)] > 462 && xa11[rdroga1.IndexOf(auto1)] < 464)
                     {
-                        Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 30);
-                        Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 91);
-                    });
-                }
-                //Druga prosta
-                else if (xa11[rdroga1.IndexOf(auto1)] > 462 && xa11[rdroga1.IndexOf(auto1)] < 464)
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        xa1[rdroga1.IndexOf(auto1)] = xa11[rdroga1.IndexOf(auto1)] + 30;
-                        ya1[rdroga1.IndexOf(auto1)] = ya11[rdroga1.IndexOf(auto1)] + 91;
-                        xa11[rdroga1.IndexOf(auto1)] = 0;
-                        ya11[rdroga1.IndexOf(auto1)] = 0;
-                    });
-                }
-       
-                else if (xa1[rdroga1.IndexOf(auto1)] < 464 + 30 && xa1[rdroga1.IndexOf(auto1)] > 160 && ya1[rdroga1.IndexOf(auto1)] > 322 && ya1[rdroga1.IndexOf(auto1)] < 323)
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
-                        xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] - v1[rdroga1.IndexOf(auto1)];
-                        if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                        this.Dispatcher.Invoke(() =>
                         {
-                            v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
-                        }
-                    });
-                }
-       
-                //Drugi zakręt
-                else if (kat11[rdroga1.IndexOf(auto1)] < 6)
-                {
-                    kat11[rdroga1.IndexOf(auto1)] = kat11[rdroga1.IndexOf(auto1)] + 0.1;
-                    xa11[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + r2 * Math.Sin(kat11[rdroga1.IndexOf(auto1)]);
-                    ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r2 * Math.Cos(kat11[rdroga1.IndexOf(auto1)]);
-       
-                    this.Dispatcher.Invoke(() =>
+                            xa1[rdroga1.IndexOf(auto1)] = xa11[rdroga1.IndexOf(auto1)] + 30;
+                            ya1[rdroga1.IndexOf(auto1)] = ya11[rdroga1.IndexOf(auto1)] + 91;
+                            xa11[rdroga1.IndexOf(auto1)] = 0;
+                            ya11[rdroga1.IndexOf(auto1)] = 0;
+                        });
+                    }
+
+                    else if (xa1[rdroga1.IndexOf(auto1)] < 464 + 30 && xa1[rdroga1.IndexOf(auto1)] > 160 && ya1[rdroga1.IndexOf(auto1)] > 322 && ya1[rdroga1.IndexOf(auto1)] < 323)
                     {
-                        Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 15);
-                        Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 62);
-                    });
-                }
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
+                            xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] - v1[rdroga1.IndexOf(auto1)];
+                            if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                            {
+                                v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
+                            }
+                        });
+                    }
+
+                    //Drugi zakręt
+                    else if (kat11[rdroga1.IndexOf(auto1)] < 6)
+                    {
+                        kat11[rdroga1.IndexOf(auto1)] = kat11[rdroga1.IndexOf(auto1)] + 0.1;
+                        xa11[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + r2 * Math.Sin(kat11[rdroga1.IndexOf(auto1)]);
+                        ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r2 * Math.Cos(kat11[rdroga1.IndexOf(auto1)]);
+
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 15);
+                            Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 62);
+                        });
+                    }
                     else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
                     {
                         this.Dispatcher.Invoke(() =>
@@ -207,7 +215,7 @@ namespace SO
 
                         });
                     }
-                // TRZECIA PROSTA
+                    // TRZECIA PROSTA
                     else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
                     {
                         this.Dispatcher.Invoke(() =>
@@ -231,45 +239,68 @@ namespace SO
                                 v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
                             }
 
-                           /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] > 383 + 62 && ya1[rdroga1.IndexOf(auto1)] < 384 + 62)
-                            {
-                                if (stop == true)
-                                {
-                                    v1[rdroga1.IndexOf(auto1)] = 0;
-                                }
-                                else
-                                {
-                                    v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
-                                }
-                            }*/
+                            /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] > 383 + 62 && ya1[rdroga1.IndexOf(auto1)] < 384 + 62)
+                             {
+                                 if (stop == true)
+                                 {
+                                     v1[rdroga1.IndexOf(auto1)] = 0;
+                                 }
+                                 else
+                                 {
+                                     v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
+                                 }
+                             }*/
                         });
                     }
                 }
                 Thread.Sleep(10);
             }
         }
-       public void Pociag()
-       {
+        public void Pociag()
+        {
             while (true)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Rectangle auto2 = new Rectangle();
-                    auto2.Width = 40;
-                    auto2.Height = 20;
-                    auto2.Fill = Brushes.AliceBlue;
-                    Canvas1.Children.Add(auto2);
-                    Canvas.SetTop(auto2, 145);
-                    rauto2.Add(auto2);
-                    xa2.Add(0);
-                    ya2.Add(145);
-                    kat2.Add(3.6);
-                    kat22.Add(3.6);
-                    xa22.Add(0);
-                    ya22.Add(0);
+                    Rectangle train = new Rectangle();
+                    train.Width = 150;
+                    train.Height = 200;
+                    train.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/train.png", UriKind.Relative)));
+                    Canvas1.Children.Add(train);
+                    Canvas.SetBottom(train, -20);
+                    Canvas.SetLeft(train, -40);
+                    train.AddHandler(train);
+                    yac.Add(0);
                 });
-                Thread.Sleep(1500);
+                Thread.Sleep(25000);
             }
-       }
+        }
+        public void Train()
+        {
+            while (true)
+            {
+                List<Rectangle> train2 = new List<Rectangle>(train);
+                foreach (Rectangle train in train2)
+                {
+
+                    stop = true;
+
+
+                    if (yac[train2.IndexOf(train)] <= 600)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Canvas.SetBottom(train, yac[train2.IndexOf(train)]);
+                            yac[train2.IndexOf(train)] = yac[train2.IndexOf(train)] + 3;
+                            if (yac[train2.IndexOf(train)] >= 600)
+                            {
+                                stop = false;
+                            }
+                        });
+                        Thread.Sleep(50);
+                    }
+                }
+            }
+        }
     }
 }
