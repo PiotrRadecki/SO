@@ -269,7 +269,7 @@ namespace SO
                     Canvas1.Children.Add(train);
                     Canvas.SetBottom(train, -20);
                     Canvas.SetLeft(train, -40);
-                    train.AddHandler(train);
+                    train.Add(train);
                     yac.Add(0);
                 });
                 Thread.Sleep(25000);
