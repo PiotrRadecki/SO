@@ -40,6 +40,9 @@ namespace SO
         List<double> xa22 = new List<double>();
         List<double> ya22 = new List<double>();
 
+
+        bool stop;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -122,7 +125,24 @@ namespace SO
                     this.Dispatcher.Invoke(() =>
                     {
                         Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
-                        xa1[rdroga1.IndexOf(auto1)]++;
+                        xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + v1[rdroga1.IndexOf(auto1)];
+
+                        if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                        {
+                            v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
+                        }
+
+                       /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] == 145)
+                        {
+                            if (stop == true)
+                            {
+                                v1[rdroga1.IndexOf(auto1)] = 0;
+                            }
+                            else
+                            {
+                                v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
+                            }
+                        }*/
                     });
                 }
                 //Pierwszy zakręt
@@ -134,12 +154,12 @@ namespace SO
        
                     this.Dispatcher.Invoke(() =>
                     {
-                        Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)] + 30);
-                        Canvas.SetBottom(auto1, ya1[rdroga1.IndexOf(auto1)] + 91);
+                        Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 30);
+                        Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 91);
                     });
                 }
                 //Druga prosta
-                else if (xa1[rdroga1.IndexOf(auto1)] > 463 && ya1[rdroga1.IndexOf(auto1)] < 464)
+                else if (xa11[rdroga1.IndexOf(auto1)] > 462 && xa11[rdroga1.IndexOf(auto1)] < 464)
                 {
                     this.Dispatcher.Invoke(() =>
                     {
@@ -155,7 +175,11 @@ namespace SO
                     this.Dispatcher.Invoke(() =>
                     {
                         Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
-                        xa1[rdroga1.IndexOf(auto1)]--;
+                        xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] - v1[rdroga1.IndexOf(auto1)];
+                        if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                        {
+                            v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
+                        }
                     });
                 }
        
@@ -168,8 +192,8 @@ namespace SO
        
                     this.Dispatcher.Invoke(() =>
                     {
-                        Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)] + 15);
-                        Canvas.SetTop(auto1, ya1[rdroga1.IndexOf(auto1)] + 62);
+                        Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 15);
+                        Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 62);
                     });
                 }
                     else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
@@ -183,7 +207,45 @@ namespace SO
 
                         });
                     }
+                // TRZECIA PROSTA
+                    else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            xa1[rdroga1.IndexOf(auto1)] = xa11[rdroga1.IndexOf(auto1)] + 15;
+                            ya1[rdroga1.IndexOf(auto1)] = ya11[rdroga1.IndexOf(auto1)] + 62;
+                            xa11[rdroga1.IndexOf(auto1)] = 0;
+                            ya11[rdroga1.IndexOf(auto1)] = 0;
+
+                        });
+                    }
+                    else if (xa1[rdroga1.IndexOf(auto1)] > 147 + 15 && xa1[rdroga1.IndexOf(auto1)] < 800 && ya1[rdroga1.IndexOf(auto1)] > 383 + 62 && ya1[rdroga1.IndexOf(auto1)] < 384 + 62)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Canvas.SetLeft(auto1, xa1[rdroga1.IndexOf(auto1)]);
+                            xa1[rdroga1.IndexOf(auto1)] = xa1[rdroga1.IndexOf(auto1)] + v1[rdroga1.IndexOf(auto1)];
+
+                            if (rdroga1.IndexOf(auto1) != 0 && (xa1[rdroga1.IndexOf(auto1)]) > (xa1[(rdroga1.IndexOf(auto1)) - 1] - 80))
+                            {
+                                v1[rdroga1.IndexOf(auto1)] = v1[(rdroga1.IndexOf(auto1) - 1)];
+                            }
+
+                           /* if (xa1[rdroga1.IndexOf(auto1)] == 440 && ya1[rdroga1.IndexOf(auto1)] > 383 + 62 && ya1[rdroga1.IndexOf(auto1)] < 384 + 62)
+                            {
+                                if (stop == true)
+                                {
+                                    v1[rdroga1.IndexOf(auto1)] = 0;
+                                }
+                                else
+                                {
+                                    v1[rdroga1.IndexOf(auto1)] = v11[rdroga1.IndexOf(auto1)];
+                                }
+                            }*/
+                        });
+                    }
                 }
+                Thread.Sleep(10);
             }
         }
        public void Pociag()
