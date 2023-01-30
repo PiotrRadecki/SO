@@ -65,8 +65,8 @@ namespace SO
             Thread pociag = new Thread(Pociag);
             pociag.Start();
 
-            Thread train = new Thread(Train);
-            train.Start();
+          //  Thread train = new Thread(Train);
+           // train.Start();
         }
         public void Auto1()
         {
@@ -88,12 +88,12 @@ namespace SO
                     xa11.Add(0);
                     ya11.Add(0);
                     Random rnd = new Random();
-                    double pr = rnd.NextDouble() + 1;
+                    double pr = rnd.NextDouble() + 0.25;
                     v1.Add(pr);
                     v11.Add(pr);
                 });
                 Random rnd2 = new Random();
-                double sr = rnd2.Next(1500,5000);
+                double sr = rnd2.Next(3500,7000);
                 Thread.Sleep((int)sr);
             }
         }
@@ -117,12 +117,12 @@ namespace SO
                     xa22.Add(0);
                     ya22.Add(0);
                     Random rnd2 = new Random();
-                    double pre = rnd2.NextDouble() + 1;
+                    double pre = rnd2.NextDouble() + 0.25;
                     v2.Add(pre);
                     v22.Add(pre);
                 });
                 Random rnd4 = new Random();
-                double sr1 = rnd4.Next(1500, 5000);
+                double sr1 = rnd4.Next(3500, 7000);
                 Thread.Sleep((int)sr1);
             }
         }
@@ -160,12 +160,12 @@ namespace SO
                         ya11[rdroga1.IndexOf(auto1)] = ya1[rdroga1.IndexOf(auto1)] + r1 * Math.Cos(kat1[rdroga1.IndexOf(auto1)]);
                         this.Dispatcher.Invoke(() =>
                         {
-                            Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 30);
-                            Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 91);
+                            Canvas.SetLeft(auto1, xa11[rdroga1.IndexOf(auto1)] + 32);
+                            Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 92);
                         });
                     }
                     //Druga prosta
-                    else if (xa11[rdroga1.IndexOf(auto1)] > 462 && xa11[rdroga1.IndexOf(auto1)] < 464)
+                    else if (xa11[rdroga1.IndexOf(auto1)] > 463 && xa11[rdroga1.IndexOf(auto1)] < 464)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
@@ -202,7 +202,7 @@ namespace SO
                             Canvas.SetTop(auto1, ya11[rdroga1.IndexOf(auto1)] + 62);
                         });
                     }
-                    else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
+                    else if (xa11[rdroga1.IndexOf(auto1)] > 146 && xa11[rdroga1.IndexOf(auto1)] < 147)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
@@ -214,7 +214,7 @@ namespace SO
                         });
                     }
                     // TRZECIA PROSTA
-                    else if (xa11[rdroga1.IndexOf(auto1)] > 147 && xa11[rdroga1.IndexOf(auto1)] < 148)
+                    else if (xa11[rdroga1.IndexOf(auto1)] > 148 && xa11[rdroga1.IndexOf(auto1)] < 149)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
@@ -356,7 +356,7 @@ namespace SO
                     }
 
                     //TRZECIA PROSTA
-                    else if (xa2[rauto2.IndexOf(auto2)] < 464 + 15 && xa2[rauto2.IndexOf(auto2)] > 0 && ya2[rauto2.IndexOf(auto2)] > 237 - 62 && ya2[rauto2.IndexOf(auto2)] < 238 - 62)
+                    else if (xa2[rauto2.IndexOf(auto2)] < 464 + 15 && xa2[rauto2.IndexOf(auto2)] > -40 && ya2[rauto2.IndexOf(auto2)] > 237 - 62 && ya2[rauto2.IndexOf(auto2)] < 238 - 62)
                     {
                         this.Dispatcher.Invoke(() =>
                         {
