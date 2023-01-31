@@ -387,7 +387,7 @@ namespace SO
                     Canvas.SetBottom(train, -20);
                     Canvas.SetLeft(train, -40);
                     trains.Add(train);
-                    yac.Add(0);
+                    yac.Add(-200);
                 });
                 Random rnd3 = new Random();
                 double sr1 = rnd3.Next(25000, 35000);
