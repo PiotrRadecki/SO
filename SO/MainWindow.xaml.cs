@@ -65,8 +65,8 @@ namespace SO
             Thread pociag = new Thread(Pociag);
             pociag.Start();
 
-          //  Thread train = new Thread(Train);
-           // train.Start();
+            Thread train = new Thread(Train);
+            train.Start();
         }
         public void Auto1()
         {
@@ -77,7 +77,7 @@ namespace SO
                     Rectangle auto1 = new Rectangle();
                     auto1.Width = 40;
                     auto1.Height = 20;
-                    auto1.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/car.png", UriKind.Relative)));
+                    auto1.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/carright.png", UriKind.Relative)));
                     Canvas1.Children.Add(auto1);
                     Canvas.SetTop(auto1, 145);
                     rauto1.Add(auto1);
@@ -106,7 +106,7 @@ namespace SO
                     Rectangle auto2 = new Rectangle();
                     auto2.Width = 40;
                     auto2.Height = 20;
-                    auto2.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/car2.png", UriKind.Relative)));
+                    auto2.Fill = new ImageBrush(new BitmapImage(new Uri(@"assets/carleft.png", UriKind.Relative)));
                     Canvas1.Children.Add(auto2);
                     Canvas.SetTop(auto2, 477);
                     rauto2.Add(auto2);
@@ -391,6 +391,7 @@ namespace SO
                 });
                 Random rnd3 = new Random();
                 double sr1 = rnd3.Next(25000, 35000);
+
                 Thread.Sleep((int)sr1);
             }
         }
